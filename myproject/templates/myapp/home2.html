@@ -1,0 +1,43 @@
+{% load staticfiles %} 
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static "s1.css" %}" >
+        
+    </head>
+    <body>
+    <div id = main_container>
+           <div id = body_container>
+                 <form  name = "myform"  action='{%url "agent_details" %}' method="GET" >
+                       <select name="word" >
+                          <option name="abc" value="Delhi Central">Delhi Central</option>
+                          <option name="abc" value="Delhi Dwarka">Delhi Dwarka</option>
+                          <option name="abc" value="Delhi East">Delhi East</option>
+                          <option name="abc" value="Delhi North">Delhi North</option>
+                       </select>
+                        <input type="submit" value="submit">
+                   </form>
+             </div>
+             <div id = "show_data">
+                <table>
+                    <thead>
+                        <tr>
+		                    <th>agent name</th>
+		                    <th>area</th>
+		                    <th>mobile_no</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                         {% for i in emp_details %}
+                        <tr>
+		                    <td>{{i.name}}</td>
+		                    <td>{{i.area}}</td>
+		                    <td>{{i.mobile}}</td>
+                        </tr>
+                        {% endfor%} 
+
+                    </tbody>
+                </table>
+             </div>
+       </div>
+    </body>
+</html>

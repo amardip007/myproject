@@ -1,0 +1,74 @@
+{% load staticfiles %} 
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="{% static "s1.css" %}" >
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.7/css/jquery.dataTables.css" >
+		
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+		<script type="text/javascript" src="https://cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+		
+		
+		<script type="text/javascript">
+             $(document).ready(function(){
+            var table = $('#fin_table').DataTable();
+             
+                $('#fin_table tbody').on( 'click', 'tr', function () {
+                    $(this).toggleClass('selected');
+                } );
+             
+
+                $('#button').click( function () {
+                    table.row('.selected').remove().draw( false );
+                } );  
+                 
+             });
+        </script>
+		
+	</head>
+	<body>
+	<div id = main_container>
+	       <marquee><h1>Yahoo Finance Data</h1></marquee >
+		   <div id = body_container>
+				 <form  name = "myform"  action='{%url "yahoo_finanace" %}' method="GET" >
+					    <div id = "cl1">Symbol:     <input type = "text" name= "text_co" required placeholder="company ticker" style="height:25Px"></div>
+					    <div id = "cl2"> start_date: <input type = "text" name= "start_date" required placeholder = "start date"  style="height:25Px"></div>
+					    <div id = "cl3">End_date:   <input type = "text" name= "end_date" placeholder = "end date" style="height:25Px"></div>
+					    <input type="submit" value="submit">
+					   
+				   </form>
+				   <button id = "button">delete</button>
+			 </div>
+			 
+			 <div id = "show_data">
+                 <table id ='fin_table' style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Financial_Date</th>
+                            <th>Open</th>
+                            <th>High</th>
+                            <th>Low</th>
+                            <th>Close</th>
+                            <th>Volume</th>
+                        </tr>
+                        
+                    </thead>
+                    <tbody>
+                        {%for i in yhoo_data%}
+                        <tr>
+                            <td>{{i.fin_date}}</td>
+                            <td>{{i.open}}</td>
+                            <td>{{i.high}}</td>
+                            <td>{{i.low}}</td>
+                            <td>{{i.close}}</td>
+                            <td>{{i.volume}}</td>  
+                        </tr>
+                        {% endfor%} 
+
+                    </tbody>
+                
+                 </table>
+             </div>
+	   </div>
+	</body>
+</html>

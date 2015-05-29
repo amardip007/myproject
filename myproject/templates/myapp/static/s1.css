@@ -1,0 +1,44 @@
+#main_container{
+	width:100%;
+    height: 100%;
+    background-color: #EDEDED;
+    float: left;
+}
+#body_container{
+    width: 100%;
+    height: 20%;
+    float: left;
+    margin-top: 1%;
+}
+
+#show_data{
+    width: 100%;
+    height: 70%;
+    float: left;
+    margin-top: 1%;   
+    
+}
+#cl1{
+    float:left;
+}
+#cl2{
+    float:right;
+}
+#cl3{
+    float:right;
+}
+table , th, td {
+    border: 1px solid black;  
+    text-align: left; 
+}
+
+table tr:nth-child(even) {
+    background-color: white;
+}
+table tr:nth-child(odd) {
+    background-color:yellow;
+}
+table th {
+    color: white;
+    background-color: black;
+} 
